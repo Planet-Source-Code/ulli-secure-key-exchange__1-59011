@@ -1,0 +1,408 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./Secure%20Key%20Exchange-Dateien/filelist.xml">
+<title>Secure Key Exchange</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Ulli</o:Author>
+  <o:LastAuthor>Ulli</o:LastAuthor>
+  <o:Revision>14</o:Revision>
+  <o:Created>2005-02-19T01:18:00Z</o:Created>
+  <o:LastSaved>2005-02-19T18:03:00Z</o:LastSaved>
+  <o:Pages>3</o:Pages>
+  <o:Words>766</o:Words>
+  <o:Characters>4371</o:Characters>
+  <o:Company>UMGEDV GmbH</o:Company>
+  <o:Lines>36</o:Lines>
+  <o:Paragraphs>8</o:Paragraphs>
+  <o:CharactersWithSpaces>5367</o:CharactersWithSpaces>
+  <o:Version>9.2812</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:View>Print</w:View>
+  <w:Zoom>85</w:Zoom>
+  <w:HyphenationZone>21</w:HyphenationZone>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+h1
+	{mso-style-next:Standard;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-font-kerning:0pt;
+	mso-ansi-language:EN-GB;}
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:14.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:EN-GB;}
+p.MsoBodyText2, li.MsoBodyText2, div.MsoBodyText2
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:13.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-ansi-language:EN-GB;}
+@page Section1
+	{size:595.3pt 841.9pt;
+	margin:39.7pt 70.9pt 2.0cm 70.9pt;
+	mso-header-margin:35.45pt;
+	mso-footer-margin:35.45pt;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+</head>
+
+<body lang=DE style='tab-interval:35.4pt'>
+
+<div class=Section1>
+
+<h1 align=center style='text-align:center'><span lang=EN-GB style='font-size:
+13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>Secure Key Exchange<o:p></o:p></span></h1>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN-GB
+style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'>developed at Stanford University by Whitfield Diffie, Martin Hellman and
+Ralph Merkle<o:p></o:p></span></p>
+
+<p class=MsoNormal><span lang=EN-GB style='font-size:13.0pt;mso-bidi-font-size:
+12.0pt;font-family:Arial;mso-ansi-language:EN-GB'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoBodyText2><span lang=EN-GB>How do you exchange a secret key between
+two parties over an unsecure connection? Well, you couldn’t. Up to the 70’s key
+exchange required personal meetings or a trustworthy messenger. With the advent
+of the internet however the requirement for a secure key exchange over unsecure
+lines became evident. The team at Stanford soon found that a one-way operation
+(or a trapdoor function as the named it) was needed. A trapdoor function is one
+that is quick an easy one way but to invert it is near-impossible without the
+knowledge of a missing piece of information. </span></p>
+
+<p class=MsoBodyText2><span lang=EN-GB><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoBodyText2><span lang=EN-GB>An example might be a pseudo-random
+number generator: You seed it and it generates a determinate series of numbers,
+but if you have one single number out of the series (say the n<sup>th</sup>
+number) it is impossible to determine what the seed was. The missing piece of
+information in this case is n. </span></p>
+
+<p class=MsoNormal><span lang=EN-GB style='font-size:13.0pt;mso-bidi-font-size:
+12.0pt;font-family:Arial;mso-ansi-language:EN-GB'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'>Modulo arithmetic also leads to one-way operations, and so the Stanford
+team was very interested in modulo arithmetic. They finally settled on a modulo
+operation of the form:<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=FR
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+FR'>p ^ x<sub>n</sub> mod q<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=FR style='font-size:
+13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:FR'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoBodyText style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt'>Using this operation, they
+were able to come up with a secret key exchange algorithm which works as
+follows:<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><u><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'>Step 1</span></u><span lang=EN-GB style='font-size:13.0pt;mso-bidi-font-size:
+12.0pt;font-family:Arial;mso-ansi-language:EN-GB'>: <o:p></o:p></span></p>
+
+<p class=MsoBodyText2><span lang=EN-GB>Alice and Bob agree on two non-secret
+values, one for the variable p in the formula above, the other for the variable
+q, and p must be less than q. For example, they agree on p = 6 and q = 17 .</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><u><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'>Step 2</span></u><span lang=EN-GB style='font-size:13.0pt;mso-bidi-font-size:
+12.0pt;font-family:Arial;mso-ansi-language:EN-GB'>: <o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'>Then Alice and Bob each choose a secret value, x<sub>a</sub> and x<sub>b</sub>,
+let’s say Alice chooses x<sub>a</sub> = 7 and Bob chooses x<sub>b</sub> = 5.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><u><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'>Step 3</span></u><span lang=EN-GB style='font-size:13.0pt;mso-bidi-font-size:
+12.0pt;font-family:Arial;mso-ansi-language:EN-GB'>: <o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'>Alice uses her secret value x<sub>a</sub> = 7 in the formula defined
+above:<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'><span style="mso-spacerun: yes"> </span>(p ^ x<sub>a</sub>) mod q = (6 ^
+7) mod 17 = 279,936 mod 17 and gets a new value p<sub>a</sub> = 14<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'>She sends that value to Bob.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><u><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'>Step 4</span></u><span lang=EN-GB style='font-size:13.0pt;mso-bidi-font-size:
+12.0pt;font-family:Arial;mso-ansi-language:EN-GB'>: <o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'>Bob similarly inserts his secret value x<sub>b</sub> = 5 into the
+formula:<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'><span style="mso-spacerun: yes"> </span>(p ^ x<sub>b</sub>) mod q = (6 ^
+5) mod 17 = 7,776 mod 17 = p<sub>b</sub> = 7<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'>He sends this result to Alice.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><u><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'>Step 5</span></u><span lang=EN-GB style='font-size:13.0pt;mso-bidi-font-size:
+12.0pt;font-family:Arial;mso-ansi-language:EN-GB'>: <o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'>Now here's where the really surprising thing happens. Alice takes Bob's
+result of p<sub>b</sub>= 7 and plugs it into the formula as:<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'><span style="mso-spacerun: yes"> </span>(p<sub>b</sub> ^ x<sub>a</sub>)
+mod q = (7 ^ 7) mod 17 = 823,543 mod 17 = <b>12</b><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><u><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'>Step 6</span></u><span lang=EN-GB style='font-size:13.0pt;mso-bidi-font-size:
+12.0pt;font-family:Arial;mso-ansi-language:EN-GB'>: <o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'>Likewise, Bob takes Alice's result of p<sub>a</sub> = 14 and sticks it
+into the formula:<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'><span style="mso-spacerun: yes"> </span>(p<sub>a</sub> ^ x<sub>b</sub>)
+mod q = (14 ^ 5 ) mod 17 = 537,824 mod 17 = <b>12</b><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'>The results are the same for Alice and Bob. Alice and Bob will always
+get the same value if they follow this procedure, and that value is the cipher
+key, in this case with a value of 12. Proving that this neat symmetry is true
+is a job for the professionals, but the rest of us can take it as granted that
+it is so.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'>Of course, 12 is too feeble a value for a secret key, and in practice
+Alice and Bob would pick much bigger values for p and q to obtain a stronger
+cipher key. However, the calculations quickly become burdensome and a simple
+example as demonstrated here must use small values to keep calculations
+manageable. They still often overflow the resolution of a pocket calculator and
+generally require an indefinite-precision math software package.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'>Now suppose an eavesdropper (named Eve for convenience) has been
+listening in and has intercepted everything that was exchanged between Alice
+and Bob: p, q, p<sub>a,<span style="mso-spacerun: yes">  </span></sub>and p<sub>b</sub>.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'>The important feature of this scheme is that Eve will still not be able
+to figure out what the key is. She has to know the secret values of x<sub>a</sub>
+and x<sub>b</sub>. Alice hasn't told anyone what the value of x<sub>a</sub> is,
+and Bob hasn't told anyone what the value of x<sub>b</sub> is. They don't have
+to tell anyone, not even each other, and so in this scenario there is no
+opportunity for Eve to intercept their secret values x<sub>a </sub><span
+style="mso-spacerun: yes"> </span>and x<sub>b</sub> to determine the key agreed
+upon between Alice and Bob.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;mso-ansi-language:
+EN-GB'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoBodyText style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt'>However, the Diffie-Hellman
+key exchange is still vulnerable to a person-in-the-middle attack. In this
+attack, Eve, knowing p and q already, intercepts Alice's public value p<sub>a</sub>
+and sends her own public value to Bob. When Bob transmits his public value p<sub>b</sub>,
+Eve substitutes it with her own and sends it to Alice. Alice and Eve thus agree
+on one shared key and Eve and Bob agree on another shared key. After this
+exchange, Eve simply decrypts any messages sent out by Alice to Bob or vice
+versa, and then reads and possibly modifies them before re-encrypting with the
+appropriate key and transmitting them to the other party. This vulnerability is
+present because the Diffie-Hellman Key Exchange does not authenticate the
+participants.<o:p></o:p></span></p>
+
+<p class=MsoBodyText style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoBodyText style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt'>One solution for intimacy
+and integrity might be the following scheme using two private, non-disclosed
+keys <i>alpha</i> and <i>beta</i>:<o:p></o:p></span></p>
+
+<p class=MsoBodyText style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-align:justify;mso-layout-grid-align:none;
+text-autospace:none'><span lang=EN-GB style='font-family:Arial;mso-ansi-language:
+EN-GB'>Alice encrypts her message using her private key </span><i><span
+style='mso-bidi-font-size:13.0pt;font-family:Arial'>&#945;</span></i><span
+style='font-family:Arial;mso-ansi-language:EN-GB'> <span lang=EN-GB>and sends
+it to Bob. Bob encrypts the encrypted message again using his private key </span></span><i><span
+style='font-size:13.0pt;font-family:Arial'>&#946;</span></i><span
+style='font-size:13.0pt;font-family:Arial;mso-ansi-language:EN-GB'> </span><span
+lang=EN-GB style='font-family:Arial;mso-ansi-language:EN-GB'>and sends this now
+doubly encrypted message back to Alice. Alice decrypts using her private key
+(thus removing her </span><i><span style='mso-bidi-font-size:13.0pt;font-family:
+Arial'>&#945;</span></i><span lang=EN-GB style='font-family:Arial;mso-ansi-language:
+EN-GB'>-encryption, leaving only Bob’s </span><i><span style='font-size:13.0pt;
+font-family:Arial'>&#946;</span></i><span lang=EN-GB style='font-size:13.0pt;
+font-family:Arial;mso-ansi-language:EN-GB'>-encryption</span><span lang=EN-GB
+style='font-family:Arial;mso-ansi-language:EN-GB'>) and returns the message to
+Bob whereupon Bob can finally decrypt the message with his own private key.
+This procedure of course requires a special type of symmetrical encryption
+which is not upset by the second encryption pass:<o:p></o:p></span></p>
+
+<p class=MsoBodyText style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoBodyText align=center style='text-align:center'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt'>((((M enc </span><i><span
+lang=EN-GB style='mso-bidi-font-size:13.0pt'>&#945;</span></i><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt'><span style="mso-spacerun:
+yes">  </span>enc </span><i><span lang=EN-GB style='font-size:13.0pt'>&#946;</span></i><span
+lang=EN-GB style='font-size:13.0pt;mso-bidi-font-size:12.0pt'>) dec </span><i><span
+lang=EN-GB style='mso-bidi-font-size:13.0pt'>&#945;</span></i><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt'>) dec </span><i><span
+lang=EN-GB style='font-size:13.0pt'>&#946;</span></i><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt'>) = M<o:p></o:p></span></p>
+
+<p class=MsoBodyText style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoBodyText style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt'>Since all messages sent to
+and fro between Alice and Bob have at least been encrypted once (using a
+private non-disclosed key) there is virtually no chance for Eve to figure out
+what the message content is.<o:p></o:p></span></p>
+
+<p class=MsoBodyText style='text-align:justify'><span lang=EN-GB
+style='font-size:13.0pt;mso-bidi-font-size:12.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>
